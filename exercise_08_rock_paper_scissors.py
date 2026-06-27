@@ -1,65 +1,70 @@
 """
 Practice Python - Exercise 08: Rock Paper Scissors
 
-A command-line Rock, Paper, Scissors game played against the computer.
-Includes input validation for user choices and an option to replay.
+A local 2-player command-line Rock, Paper, Scissors game.
+Includes player name inputs, choice validation, and a replay system.
 
 Exercise URL: https://www.practicepython.org/exercise/2014/03/26/08-rock-paper-scissors.html
 """
 
 
-# print()
-
-
-import random
+print()
 
 
 # Valid options for the game and replay prompts
 choices = ["rock", "paper", "scissor"]
 
+# Get names for both players before the game loop starts
+user1_name = input("Enter player 1 name: ")
+user2_name = input("Enter player 2 name: ")
+
 while True:
-    print()
-    user_choice = input("Enter your choice (rock, paper, scissor): ")
+    user1_choice = input(f"\n{user1_name}, enter your choice (rock, paper, scissor): ").lower()
 
-    # Validate user input to ensure it matches game options
-    while not user_choice in choices:
+    # Validate Player 1's input
+    while not user1_choice in choices:
         print("\nInvalid choice!")
-        user_choice = input("Enter your choice (rock, paper, scissor): ")
+        user1_choice = input(f"{user1_name}, enter your choice (rock, paper, scissor): ").lower()
+
+    user2_choice = input(f"{user2_name}, enter your choice (rock, paper, scissor): ").lower()
+
+    # Validate Player 2's input
+    while not user2_choice in choices:
+        print("\nInvalid choice!")
+        user2_choice = input(f"{user2_name}, enter your choice (rock, paper, scissor): ").lower()
     print()
 
-    # Generate random choice for the computer
-    comp_choice = random.choice(choices)
-    print(f"Your choice: {user_choice}\nComputer choice: {comp_choice}")
+    print(f"{user1_name}'s choice: {user1_choice}\n{user2_name}'s choice: {user2_choice}")
 
     # Determine the game winner based on standard rules
-    if user_choice == comp_choice:
+    if user1_choice == user2_choice:
         print("It is a tie!")
-    elif user_choice == "rock":
-        if comp_choice == "scissor":
-            print(f"{user_choice.capitalize()} smashes {comp_choice}. You win!")
+    elif user1_choice == "rock":
+        if user2_choice == "scissor":
+            print(f"{user1_choice.capitalize()} smashes {user2_choice}. {user1_name} win!")
         else:
-            print(f"{comp_choice.capitalize()} covers {user_choice}. You lose!")
-    elif user_choice == "paper":
-        if comp_choice == "rock":
-            print(f"{user_choice.capitalize()} covers {comp_choice}. You win!")
+            print(f"{user2_choice.capitalize()} covers {user1_choice}. {user2_name} win!")
+    elif user1_choice == "paper":
+        if user2_choice == "rock":
+            print(f"{user1_choice.capitalize()} covers {user2_choice}. {user1_name} win!")
         else:
-            print(f"{comp_choice.capitalize()} cuts {user_choice}. You lose!")
+            print(f"{user2_choice.capitalize()} cuts {user1_choice}. {user2_name} win!")
     else:
-        if comp_choice == "paper":
-            print(f"{user_choice.capitalize()} cuts {comp_choice}. You win!")
+        if user2_choice == "paper":
+            print(f"{user1_choice.capitalize()} cuts {user2_choice}. {user1_name} win!")
         else:
-            print(f"{comp_choice.capitalize()} smashes {user_choice}. You lose!")
+            print(f"{user2_choice.capitalize()} smashes {user1_choice}. {user2_name} win!")
 
     # Ask player if they want to continue or exit
     print()
     new_game_choice = ["yes", "no"]
-    user_choice = input("Start a new game (yes or no)? ")
+    new_game = input("Start a new game (yes or no)? ")
 
-    while not user_choice in new_game_choice:
+    while not new_game in new_game_choice:
         print("\nInvalid choice!")
-        user_choice = input("Start a new game (yes or no)? ")
+        new_game = input("Start a new game (yes or no)? ")
 
-    if user_choice == "no":
+    if new_game == "no":
         break
 
 print("\nThanks for playing.")
