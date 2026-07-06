@@ -17,7 +17,7 @@ def input_validator(current_guess, valid_list):
 
     while current_guess not in valid_list:
         print("\nInvalid input, please try again.")
-        current_guess = input("Guess a number between 1 and 9 (exit to quit): ")
+        current_guess = input("Guess a number between 1 and 9 (exit to quit): ").lower()
 
     return current_guess
 
@@ -39,7 +39,7 @@ def main():
     guess_validator.append("exit")
 
     # Take the initial guess from the user
-    user_guess = input("Guess a number between 1 and 9 (exit to quit): ")
+    user_guess = input("Guess a number between 1 and 9 (exit to quit): ").lower()
     user_guess = input_validator(user_guess, guess_validator)
 
     # Game loop: provide high/low feedback and accept new guesses until correct or exit
@@ -52,9 +52,9 @@ def main():
             print("You guessed the number! 🎉")
             break
         elif random_number > user_guess_int:
-            user_guess = input("Your guess is too low, try again: ")
+            user_guess = input("Your guess is too low, try again: ").lower()
         else:
-            user_guess = input("Your guess is too high, try again: ")
+            user_guess = input("Your guess is too high, try again: ").lower()
 
         user_guess = input_validator(user_guess, guess_validator)
 
